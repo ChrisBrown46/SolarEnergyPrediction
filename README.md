@@ -35,6 +35,10 @@ The `scrape_website.py` file is for collecting the solar energy output data.
 
 For an easy to run script, run the `src/model.py` file while in the project directory.
 
+## Git Large File Storage
+
+Git LFS is used to store the large weather data files. Install it before downloading these large files. View the 'Installing Git LFS' section on this website <https://www.atlassian.com/git/tutorials/git-lfs> to see instructions.
+
 ## Known issues
 
 The only issue is with plotting. The graphs sometimes may be scaled strangely or not apply settings, so to fix it, you must only make one plot/graph at a time. I have resolved the issue, but if it happens to not be fixed for your own plots, then this is how to fix it.
