@@ -21,4 +21,4 @@ The full command is `pip install xgboost beautifulsoup4 selenium pandas numpy ne
 The `model.py` file contains the creation, testing, and plotting of the xgboosted model.
 The `scrape_website.py` file is for collecting the solar energy output data.
 
-For an easy to run script, run the `run_me.py` file.
+For an easy to run script, run the `model.py` file.
