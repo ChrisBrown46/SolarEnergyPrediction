@@ -22,12 +22,12 @@ MAX = 257622.0
 def preprocess_data():
 
     # Adjustable parameters
-    solar_file_name = "../data/Lakeside California/289KW_PV_System_Hourly.csv"
-    weather_file_name = "../data/Lakeside California/LakesideCA_Solcast_15m.csv"
+    solar_file_name = "./data/Lakeside California/289KW_PV_System_Hourly.csv"
+    weather_file_name = "./data/Lakeside California/LakesideCA_Solcast_15m.csv"
 
     # Build a temporary data to store data in
     delete_test_train_split()
-    os.mkdir("../temp/")
+    os.mkdir("./out/")
 
     # Load the solar data
     solar_data = pd.read_csv(solar_file_name)
@@ -87,24 +87,24 @@ def preprocess_data():
     train, test = data[: (length - split_length)], data[(length - split_length) :]
 
     # Save the data
-    train.to_csv(f"../temp/train.csv", index=False)
-    test.to_csv(f"../temp/test.csv", index=False)
+    train.to_csv(f"./out/train.csv", index=False)
+    test.to_csv(f"./out/test.csv", index=False)
 
 
 def delete_test_train_split():
 
     try:
-        for file_name in os.listdir(f"{os.path.abspath('../temp')}"):
-            os.unlink(f"{os.path.abspath('../temp')}/{file_name}")
-        os.rmdir("../temp/")
+        for file_name in os.listdir(f"{os.path.abspath('./out/')}"):
+            os.unlink(f"{os.path.abspath('./out/')}/{file_name}")
+        os.rmdir("./out/")
     except:
         return
 
 
 def train_model():
 
-    train = pd.read_csv("../temp/train.csv")
-    test = pd.read_csv("../temp/test.csv")
+    train = pd.read_csv("./out/train.csv")
+    test = pd.read_csv("./out/test.csv")
 
     # Pull apart the independent and dependent variables
     train_target = train["Generated"]
@@ -140,7 +140,7 @@ def train_model():
         early_stopping_rounds=20,
     )
     print(f"Duration: {time.time() - start}s")
-    pickle.dump(bst, open("../temp/bst_model.pck", "wb"))
+    pickle.dump(bst, open("./out/bst_model.pck", "wb"))
 
 
 def plot_model(bst):
@@ -153,7 +153,7 @@ def plot_model(bst):
     # Plot the importance of each feature
     xgb.plot_importance(bst)
     plt.gcf().subplots_adjust(left=0.15)
-    plt.savefig("../temp/importance.png", bbox_inches="tight")
+    plt.savefig("./out/importance.png", bbox_inches="tight")
     clear_plots()
 
     # Plot setup
@@ -164,7 +164,7 @@ def plot_model(bst):
     # Plot a decision tree
     matplotlib.rcParams["figure.dpi"] = 1080
     xgb.plot_tree(bst, num_trees=4, rankdir="LR")
-    plt.savefig("../temp/tree.png")
+    plt.savefig("./out/tree.png")
     clear_plots()
 
 
@@ -174,7 +174,7 @@ def test_model():
     smoothing_step = 1500
 
     # Load data
-    test = pd.read_csv("../temp/test.csv")
+    test = pd.read_csv("./out/test.csv")
 
     # Store dates for plotting output
     start_date = test["DateTime"][0]
@@ -187,7 +187,7 @@ def test_model():
     test = xgb.DMatrix(test)
 
     # Load model and plot it
-    bst = pickle.load(open("../temp/bst_model.pck", "rb"))
+    bst = pickle.load(open("./out/bst_model.pck", "rb"))
     plot_model(bst)
 
     # Create target vs prediction
@@ -229,7 +229,7 @@ def test_model():
     plt.title(
         f"Average Energy Generation Per Day From {end_date} to {start_date}\nAbsolute Error: {error:.2f} Watts"
     )
-    plt.savefig("../temp/error.png")
+    plt.savefig("./out/error.png")
     clear_plots()
 
     # Scatter plot setup
@@ -243,7 +243,7 @@ def test_model():
     plt.ylabel("Predicted Generation In Watts")
     plt.xlim(0.0, MAX)
     plt.ylim(0.0, MAX)
-    plt.savefig("../temp/scatterplot.png")
+    plt.savefig("./out/scatterplot.png")
     clear_plots()
 
 
