@@ -1,0 +1,6 @@
+LakesideCA_Solcast_5m.csv filter=lfs diff=lfs merge=lfs -text
+LakesideCA_Solcast_10m.csv filter=lfs diff=lfs merge=lfs -text
+LakesideCA_Solcast_15m.csv filter=lfs diff=lfs merge=lfs -text
+LakesideCA_Solcast_20m.csv filter=lfs diff=lfs merge=lfs -text
+LakesideCA_Solcast_60m.csv filter=lfs diff=lfs merge=lfs -text
+LakesideCA_Solcast_Native.csv filter=lfs diff=lfs merge=lfs -text
