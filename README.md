@@ -7,6 +7,7 @@ Use historical energy production values along with weather predictions to foreca
 ### Machine learning packages
 
 * xgboost          (pip install xgboost)
+* graphviz         (pip install graphviz)
 
 ### Plotting packages
 
@@ -26,7 +27,7 @@ Use historical energy production values along with weather predictions to foreca
 
 ### Compiled pip install command
 
-The full command is `pip install xgboost beautifulsoup4 selenium pandas numpy matplotlib seaborn pytz`.
+The full command is `pip install xgboost graphviz beautifulsoup4 selenium pandas numpy matplotlib seaborn pytz`.
 
 ## Running this code
 

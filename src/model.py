@@ -125,8 +125,8 @@ def train_model():
     param["max_depth"] = 6  # more complexity with higher depths
     param["subsample"] = 0.8  # cross-fold with 0.8 meaning 80% train, 20% valid
     param["lambda"] = 1.0  # L2 regularization term
-    param["objective"] = "reg:squaredlogerror"
-    param["eval_metric"] = ["mae", "auc", "rmsle"]
+    param["objective"] = "reg:logistic"
+    param["eval_metric"] = ["mae", "auc"]
 
     # Train the model
     eval_list = [(test, "eval"), (train, "train")]
